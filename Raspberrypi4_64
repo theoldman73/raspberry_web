@@ -3,7 +3,7 @@
 https://desertbot.io/blog/raspberry-pi-create-add-user
 
 > Create or add a new user interactively
-sudo adduser azz
+sudo adduser admin
 
 > Confirm the users home directory
 ls /home
@@ -95,7 +95,7 @@ ipconfig
 sudo apt-get install cifs-utils
 sudo mount.cifs -o username={windows_login} {path to shared folder} {linux mount diretory}
 sudo mount.cifs -o username=azz //192.168.1.129/GIS /home/azz/Desktop/win11
-sudo mount.cifs -o username=azz,password=azz //192.168.1.129/GIS /home/azz/Desktop/win11
+sudo mount.cifs -o username=admin,password=admin //192.168.1.129/GIS /home/admin/Desktop/win11
 ++++++++++++++++++++++
 https://pimylifeup.com/raspbe
 https://pimylifeup.com/raspberry-pi-postgresql/
