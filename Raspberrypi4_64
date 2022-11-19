@@ -1,0 +1,318 @@
+1- Add new user
++++++++++++++++++++++++
+https://desertbot.io/blog/raspberry-pi-create-add-user
+
+> Create or add a new user interactively
+sudo adduser azz
+
+> Confirm the users home directory
+ls /home
+
+> Confirm the users information using lslogins
+lslogins -u
+
+> Confirm using getent
+getent passwd azz
++++++++++++++++++++++++
+https://helpdeskgeek.com/linux-tips/best-raspberry-pi-linux-commands/#:~:text=In%20general%2C%20the%20Raspberry%20Pi,and%20rename%20it%20to%20test2.
+
+> If you want it to reboot instantly
+sudo shutdown -r 0
+
+> When you copy files
+cp a.txt /azz/a.txt
+
+> To rename a fil
+mv test.txt test2.txt
++++++++++++++++++++++++
+++++++++++++++++++++++
+https://www.jeremymorgan.com/tutorials/raspberry-pi/how-to-install-opencv-raspberry-pi/
+
+sudo raspi-config
+++++++++++++++++++++++
+https://helpdeskgeek.com/linux-tips/best-raspberry-pi-linux-commands/#:~:text=In%20general%2C%20the%20Raspberry%20Pi,and%20rename%20it%20to%20test2.
+
+> If you want it to reboot instantly
+sudo shutdown -r 0
+
+> When you copy files
+cp a.txt /azz/a.txt
+
+> To rename a fil
+mv test.txt test2.txt
+
+> Moving a file from one folder to another 
+mv [filename] [destination folder]
+
+> Finding the Location of an Installed Program
+whereis  gcc
+++++++++++++++++++++++
+https://pimylifeup.com/raspberry-pi-swap-file/
+
+> Increasing the Swap File on a Raspberry Pi
+
+sudo dphys-swapfile swapoff
+
+sudo nano /etc/dphys-swapfile
+CONF_SWAPSIZE=100 > 1024
+
+sudo dphys-swapfile setup
+sudo dphys-swapfile swapon
+sudo reboot
+++++++++++++++++++++++
+https://forums.raspberrypi.com/viewtopic.php?t=328544
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+sudo apt install net-tools
+sudo ifconfig
+++++++++++++++++++++++
+How to Setup a Raspberry Pi Samba Server
+https://pimylifeup.com/raspberry-pi-samba/
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install samba samba-common-bin
+mkdir /home/azz/Desktop/GIS
+
+sudo nano /etc/samba/smb.conf
+[GIS]
+path = /home/azz/Desktop/GIS
+writeable=Yes
+create mask=0777
+directory mask=0777
+public=yes
+
+sudo smbpasswd -a azz
+hostname -I
+++++++++++++++++++++++
+How to set up a shared folder between a Windows host and a Raspberry Pi
+https://www.youtube.com/watch?v=1tAP273Rvhg&ab_channel=qrbx
+https://www.cyberciti.biz/faq/linux-mount-cifs-windows-share/
+
+ipconfig
+sudo apt-get install cifs-utils
+sudo mount.cifs -o username={windows_login} {path to shared folder} {linux mount diretory}
+sudo mount.cifs -o username=azz //192.168.1.129/GIS /home/azz/Desktop/win11
+sudo mount.cifs -o username=azz,password=azz //192.168.1.129/GIS /home/azz/Desktop/win11
+++++++++++++++++++++++
+https://pimylifeup.com/raspbe
+https://pimylifeup.com/raspberry-pi-postgresql/
+
+sudo apt update
+sudo apt full-upgrade
+sudo apt install postgresql
+sudo apt install postgis
+sudo su postgres
+createuser admin -P --interactive
+psql
+CREATE DATABASE test;
+\connect test;
+CREATE TABLE authors (name text, website text);
+INSERT INTO authors VALUES ('amr', 'www.google.com');
+SELECT * FROM authors;
+++++++++++++++++++++
+How to Install the Apache Web Server on the Raspberry Pi
+https://pimylifeup.com/raspberry-pi-apache/
+https://stackoverflow.com/questions/8328481/chmod-777-to-a-folder-and-all-contents
+https://vicpimakers.ca/tutorials/raspbian/change-the-raspbian-root-password/
+https://forums.raspberrypi.com/viewtopic.php?t=202294
+https://phoenixnap.com/kb/raspberry-pi-ftp-server
+http://kamilslab.com/2017/03/11/how-to-setup-a-raspberry-pi-sftp-server/
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install apache2 -y
+hostname -I
+sudo usermod -a -G www-data azz
+sudo chown -R -f www-data:www-data /var/www/html
+
+sudo mkdir -p /var/www/html/react
+sudo chown -R www-data:www-data /var/www/html/react
+sudo chmod -R 777 /www/html/react
+sudo chmod -R 777 /html/react
+sudo passwd root
+
+sudo usermod -a -G www-data azz
+sudo usermod -a -G sudo azz
+sudo chown -R www-data:azz /var/www/html/react	[change group of folder]
+sudo usermod -a -G azz azz
+chown azz:azz -R /var/www/html/react    [Change owner of folder]
+chown azz:azz -R /var/www/html
+++++++++++++++++++++
+https://phoenixnap.com/kb/raspberry-pi-ftp-server
+
+sudo apt install vsftpd
+sudo nano /etc/vsftpd.conf
+write_enable=YES
+local_umask=022
+chroot_local_user=YES
+anonymous_enable=YES
+user_sub_token=$USER
+local_root=/home/$USER/DESKTOP
+
+chmod a-w /home/DESKTOP/GIS
+
+sudo service vsftpd restart
+sudo raspi-config
+Interfacing Options-->SSH
+++++++++++++++++++++
+ow to Setup a Raspberry Pi Apache Web Server
+https://raspberry-projects.com/pi/software_utilities/web-servers/phpapache
+https://pimylifeup.com/raspberry-pi-apache/
+
+sudo apt install php7.4 libapache2-mod-php7.4 php7.4-mbstring php7.4-mysql php7.4-curl php7.4-gd php7.4-zip -y
+
+sudo service apache2 restart
+sudo service apache2 stop
+sudo service apache2 start
+sudo service apache2 status
+
+sudo visudo
+www-data ALL=(ALL) NOPASSWD: ALL
+sudo service apache2 restart
+
+++++++++++++++++++++
+https://pimylifeup.com/raspberry-pi-wordpress/
+
+cd /var/www/html/wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+chown azz:azz -R /var/www/html/wordpress
+sudo usermod -a -G www-data azz
+
+sudo mysql -u root -p
+CREATE DATABASE wordpress;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL ON wordpress.* TO 'admin'@'localhost';
+
+++++++++++++++++++++
+Setup a Raspberry Pi MYSQL Database
+https://pimylifeup.com/raspberry-pi-mysql/
+
+sudo apt install mariadb-server
+sudo mysql_secure_installation
+sudo mysql -u root -p
+CREATE DATABASE test;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON test.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+sudo apt install php-mysql
+++++++++++++++++++++
+https://phoenixnap.com/kb/install-java-raspberry-pi
+https://pimylifeup.com/raspberry-pi-java/
+https://raspberrypi.stackexchange.com/questions/95143/add-apt-repository-does-not-work
+
+sudo apt update
+sudo apt install openjdk-8-jdk
+java –version
+
+sudo apt update
+sudo apt-get install software-properties-common
+sudo apt-add-repository 'deb http://security.debian.org/debian-security stretch/updates main'
+apt-get -y update && apt-get -y upgrade
+apt-get install -y openjdk-8-jdk
+++++++++++++++++++++
+Run script on start-up with your Raspberry Pi
+https://raspberrypi-guide.github.io/programming/run-script-on-boot
+
+chmod u+x startup.sh
+sudo nano /etc/rc.local
+sudo chmod +x /etc/rc.local
+sudo reboot
+++++++++++++++++++++
+GIS: QGIS Web Client 2 Demo Application
+https://github.com/qgis/qwc2-demo-app
+++++++++++++++++++++
+https://www.w3schools.com/nodejs/nodejs_raspberrypi.asp
+sudo apt-get update
+sudo apt-get dist-upgrade
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
+++++++++++++++++++++
+https://www.golinuxcloud.com/install-yarn/
+
+sudo apt update && sudo apt install npm -y
+npm -v
+sudo npm install -g yarn
+yarn -v
+++++++++++++++++++++
+https://dzone.com/articles/using-a-raspberry-pi-as-your-development-server
+https://singleboardbytes.com/2386/install-node-js-on-raspberry-pi-4.htm
+
+sudo apt install git
+which git-shell
+sudo adduser --disabled-password git
+sudo su git
+cd ~
+mkdir ~/.ssh && chmod 700 ~/.ssh
+touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
+>>>  /home/git/.ssh/authorized_keys  
+sudo chsh git -s $(which git-shell)
+cd ~  
+mkdir /home/git/react-hello-world.git
+cd react-hello-world.git && git init --bare 
+sudo apt install nginx
+sudo cp /etc/Nginx/sites-available/default ~
+
+npx create-react-app react-hello-world
+git init
+
+Determine the Raspberry ARM architecture
+uname -m
+sudo curl -fsSL https://deb.nodesource.com/setup_16.x | sudo bash -
+sudo apt install nodejs
+++++++++++++++++++++
+Raspberry Pi: Install Apache + MySQL + PHP (LAMP Server)
+https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/#:~:text=To%20test%20if%20Apache2%20is,php%20script%20created%20earlier.
+
+sudo apt install php -y
+php -v
+sudo service apache2 restart
+++++++++++++++++++++
+Error starting apache web server on raspberry pi
+https://askubuntu.com/questions/235347/what-is-the-best-way-to-uninstall-nginx
+
+sudo apt-get remove nginx nginx-common
+sudo apt-get purge nginx nginx-common
+sudo apt-get autoremove
+sudo service apache2 start
+++++++++++++++++++++
+Using the UFW Firewall on the Raspberry Pi
+https://pimylifeup.com/raspberry-pi-ufw/
+
+sudo apt update
+sudo apt full-upgrade
+sudo apt install ufw
+sudo ufw allow PORT
+sudo ufw allow 22
+sudo ufw limit PORT
+sudo ufw limit 22
+sudo ufw show added
+
+Added user rules (see 'ufw status' for running firewall):
+ufw limit 22
+ufw allow 80
+ufw allow 443
+sudo ufw enable
+sudo ufw status
+++++++++++++++++++++
+https://raspberrypi.stackexchange.com/questions/65770/java-home-not-working
+
+nano ~/.bashrc
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-arm64"
+export PATH=$PATH:$JAVA_HOME/bin
+
+
+java -version
+++++++++++++++++++++
+URL:
+https://raspberrytips.com/login-as-root/
+https://pimylifeup.com/raspberry-pi-web-server/
+https://www.cyberciti.biz/faq/star-stop-restart-apache2-webserver/
+https://www.makeuseof.com/tag/host-website-raspberry-pi/
+https://ubuntu.com/tutorials/install-and-configure-apache#3-creating-your-own-website
+https://www.makeuseof.com/how-to-run-a-raspberry-pi-program-script-at-startup/
+https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
+https://www.golinuxcloud.com/install-nodejs-and-npm-on-raspberry-pi/
