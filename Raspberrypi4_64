@@ -12,7 +12,7 @@ ls /home
 lslogins -u
 
 > Confirm using getent
-getent passwd azz
+getent passwd admin
 +++++++++++++++++++++++
 https://helpdeskgeek.com/linux-tips/best-raspberry-pi-linux-commands/#:~:text=In%20general%2C%20the%20Raspberry%20Pi,and%20rename%20it%20to%20test2.
 
@@ -20,7 +20,7 @@ https://helpdeskgeek.com/linux-tips/best-raspberry-pi-linux-commands/#:~:text=In
 sudo shutdown -r 0
 
 > When you copy files
-cp a.txt /azz/a.txt
+cp a.txt /admin/a.txt
 
 > To rename a fil
 mv test.txt test2.txt
@@ -36,7 +36,7 @@ https://helpdeskgeek.com/linux-tips/best-raspberry-pi-linux-commands/#:~:text=In
 sudo shutdown -r 0
 
 > When you copy files
-cp a.txt /azz/a.txt
+cp a.txt /admin/a.txt
 
 > To rename a fil
 mv test.txt test2.txt
@@ -84,7 +84,7 @@ create mask=0777
 directory mask=0777
 public=yes
 
-sudo smbpasswd -a azz
+sudo smbpasswd -a admin
 hostname -I
 ++++++++++++++++++++++
 How to set up a shared folder between a Windows host and a Raspberry Pi
